@@ -19,7 +19,7 @@ val scGap : Float = 0.02f / bars
 val sizeFactor : Float = 2f
 val foreColor : Int = Color.parseColor("#0D47A1")
 val backColor : Int = Color.parseColor("#BDBDBD")
-val delay : Long = 30
+val delay : Long = 15
 
 fun Int.inverse() : Float = 1f / this
 fun Float.maxScale(i : Int, n : Int) : Float = Math.max(0f, this - i * n.inverse())
@@ -49,7 +49,7 @@ fun Canvas.drawSBNode(i : Int, scale : Float, paint : Paint) {
     val wSize : Float = w / sizeFactor
     val hSize : Float = h / (nodes + 1)
     save()
-    translate(-wSize / 2, hSize * (i + 1))
+    translate(w / 2 - wSize / 2, hSize * (i + 1))
     drawStepBars(scale, wSize, hSize, paint)
     restore()
 }
