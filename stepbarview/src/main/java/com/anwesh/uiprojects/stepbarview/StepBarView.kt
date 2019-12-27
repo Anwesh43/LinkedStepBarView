@@ -182,4 +182,26 @@ class StepBarView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : StepBarView) {
+
+        private val animator : Animator = Animator(view)
+        private val sb : StepBar = StepBar(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            sb.draw(canvas, paint)
+            animator.animate {
+                sb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            sb.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
